@@ -12,6 +12,7 @@ using SistemaControlDeTrabajo.Models;
 
 namespace SistemaControlDeTrabajo.Controllers
 {
+    //prueba de commit 
     [Authorize]
     public class AccountController : Controller
     {
