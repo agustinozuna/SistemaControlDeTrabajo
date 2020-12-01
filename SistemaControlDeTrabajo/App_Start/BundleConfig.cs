@@ -25,6 +25,15 @@ namespace SistemaControlDeTrabajo
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/plantilla").Include(
+                    "~/Content/Plantilla/css/styles.css"));
+
+            bundles.Add(new StyleBundle("~/Content/plantillajs").Include(
+                  "~/Content/Plantilla/assets/mail/jqBootstrapValidation.js",
+                  "~/Content/Plantilla/assets/mail/contact_me.js",
+                  "~/Content/Plantilla/js/scripts.js"));
+
         }
     }
 }
