@@ -17,9 +17,10 @@
 else
 {
     <!--<ul class="nav navbar-nav navbar-right">-->
-    <ul>
-        <li>@Html.ActionLink("Registrarse", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+<ul>
+    <li class="nav-item mx-0 mx-lg-1"><a href="/api/ClientesAPI/">Web Api</a></li>
+    <li>@Html.ActionLink("Registrarse", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
 
-        <li>@Html.ActionLink("  Iniciar sesión", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
+    <li>@Html.ActionLink("  Iniciar sesión", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+</ul>
 }

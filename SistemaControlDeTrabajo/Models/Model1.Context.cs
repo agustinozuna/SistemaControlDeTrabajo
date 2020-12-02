@@ -18,6 +18,7 @@ namespace SistemaControlDeTrabajo.Models
         public ElectroparEntities()
             : base("name=ElectroparEntities")
         {
+            this.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
