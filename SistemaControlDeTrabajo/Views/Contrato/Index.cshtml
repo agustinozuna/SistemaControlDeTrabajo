@@ -1,0 +1,70 @@
+﻿@model IEnumerable<SistemaControlDeTrabajo.Models.Contrato>
+
+@{
+    ViewBag.Title = "Index";
+}  
+
+<div class="container body-content" style="margin-top: 150">
+    <h2 style="text-align:center">Contratos</h2>
+
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NroContrato)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaFirma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NroSerieEquipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaFinContrato)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaUltimoMatenimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ciudad.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cliente.NroDocumento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoGenerador.Descripcion)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NroContrato)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaFirma)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NroSerieEquipo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaFinContrato)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaUltimoMatenimiento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ciudad.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cliente.NroDocumento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoGenerador.Descripcion)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

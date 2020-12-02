@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e2823eae2bae48f0a05312c811f6f18b" Name="Diagram1">
+        <EntityTypeShape EntityType="ElectroparModel.Ciudad" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElectroparModel.Cliente" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElectroparModel.Contactos" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElectroparModel.Contrato" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElectroparModel.Mantenimiento" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElectroparModel.Personal" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ElectroparModel.TipoGenerador" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <AssociationConnector Association="ElectroparModel.FK_Contrato_Ciudad" ManuallyRouted="false" />
+        <AssociationConnector Association="ElectroparModel.FK_Contrato_Cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="ElectroparModel.FK_Contrato_TipoGenerador" ManuallyRouted="false" />
+        <AssociationConnector Association="ElectroparModel.FK_Mantenimiento_Contrato" ManuallyRouted="false" />
+        <AssociationConnector Association="ElectroparModel.FK_Mantenimiento_Personal" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

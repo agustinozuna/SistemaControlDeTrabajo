@@ -1,0 +1,47 @@
+﻿@model IEnumerable<SistemaControlDeTrabajo.Models.Mantenimiento>
+
+@{
+    ViewBag.Title = "Index";
+}
+    <div class="container body-content" style="margin-top: 150">
+        <h2 style="text-align:center;">Mantenimiento</h2>
+
+        <p>
+            @Html.ActionLink("Crear Nuevo Registro", "Crear")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaRealizacion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DetalleTrabajo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Contrato.NroSerieEquipo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Personal.NroDocumento)
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaRealizacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DetalleTrabajo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Contrato.NroSerieEquipo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Personal.NroDocumento)
+                    </td>
+                </tr>
+            }
+
+        </table>
+</div>

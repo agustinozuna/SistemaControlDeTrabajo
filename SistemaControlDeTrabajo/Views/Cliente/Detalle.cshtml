@@ -1,0 +1,57 @@
+﻿@model SistemaControlDeTrabajo.Models.Cliente
+
+@{
+    ViewBag.Title = "Detalle";
+}
+    <div style="display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 120;
+    width: 40%;">
+
+        <h2 style="text-align:center">Detalle</h2>
+
+        <div>
+            <h4>Cliente</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.NroDocumento)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NroDocumento)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.NombreRazonSocial)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NombreRazonSocial)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Telefono)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Telefono)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Editar", "Editar", new { id = Model.CodCliente }) |
+            @Html.ActionLink("Regresar", "Index")
+        </p>
+</div>
+

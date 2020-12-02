@@ -1,0 +1,443 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ElectroparModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ciudad">
+          <Key>
+            <PropertyRef Name="CodCiudad" />
+          </Key>
+          <Property Name="CodCiudad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="CodCliente" />
+          </Key>
+          <Property Name="CodCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NroDocumento" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NombreRazonSocial" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contactos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nchar" MaxLength="50" />
+          <Property Name="Correo" Type="nchar" MaxLength="100" />
+          <Property Name="NroTelefono" Type="nchar" MaxLength="50" />
+          <Property Name="Mensaje" Type="nchar" MaxLength="1000" />
+          <Property Name="fechaEnvio" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Contrato">
+          <Key>
+            <PropertyRef Name="CodContrato" />
+          </Key>
+          <Property Name="CodContrato" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NroContrato" Type="int" Nullable="false" />
+          <Property Name="FechaFirma" Type="date" Nullable="false" />
+          <Property Name="CodCliente" Type="int" Nullable="false" />
+          <Property Name="CodTipoGenerador" Type="int" Nullable="false" />
+          <Property Name="NroSerieEquipo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CodCiudadUbicacion" Type="int" Nullable="false" />
+          <Property Name="FechaFinContrato" Type="date" Nullable="false" />
+          <Property Name="FechaUltimoMatenimiento" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mantenimiento">
+          <Key>
+            <PropertyRef Name="CodMatenimiento" />
+          </Key>
+          <Property Name="CodMatenimiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaRealizacion" Type="date" Nullable="false" />
+          <Property Name="CodContrato" Type="int" Nullable="false" />
+          <Property Name="CodEmpleado" Type="int" Nullable="false" />
+          <Property Name="DetalleTrabajo" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Personal">
+          <Key>
+            <PropertyRef Name="CodPersonal" />
+          </Key>
+          <Property Name="CodPersonal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NroDocumento" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NombreApellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoGenerador">
+          <Key>
+            <PropertyRef Name="CodTipoGenerador" />
+          </Key>
+          <Property Name="CodTipoGenerador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Contrato_Ciudad">
+          <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="1" />
+          <End Role="Contrato" Type="Self.Contrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudad">
+              <PropertyRef Name="CodCiudad" />
+            </Principal>
+            <Dependent Role="Contrato">
+              <PropertyRef Name="CodCiudadUbicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contrato_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Contrato" Type="Self.Contrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="CodCliente" />
+            </Principal>
+            <Dependent Role="Contrato">
+              <PropertyRef Name="CodCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contrato_TipoGenerador">
+          <End Role="TipoGenerador" Type="Self.TipoGenerador" Multiplicity="1" />
+          <End Role="Contrato" Type="Self.Contrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoGenerador">
+              <PropertyRef Name="CodTipoGenerador" />
+            </Principal>
+            <Dependent Role="Contrato">
+              <PropertyRef Name="CodTipoGenerador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mantenimiento_Contrato">
+          <End Role="Contrato" Type="Self.Contrato" Multiplicity="1" />
+          <End Role="Mantenimiento" Type="Self.Mantenimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contrato">
+              <PropertyRef Name="CodContrato" />
+            </Principal>
+            <Dependent Role="Mantenimiento">
+              <PropertyRef Name="CodContrato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mantenimiento_Personal">
+          <End Role="Personal" Type="Self.Personal" Multiplicity="1" />
+          <End Role="Mantenimiento" Type="Self.Mantenimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal">
+              <PropertyRef Name="CodPersonal" />
+            </Principal>
+            <Dependent Role="Mantenimiento">
+              <PropertyRef Name="CodEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ElectroparModelStoreContainer">
+          <EntitySet Name="Ciudad" EntityType="Self.Ciudad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contactos" EntityType="Self.Contactos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contrato" EntityType="Self.Contrato" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mantenimiento" EntityType="Self.Mantenimiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personal" EntityType="Self.Personal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoGenerador" EntityType="Self.TipoGenerador" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Contrato_Ciudad" Association="Self.FK_Contrato_Ciudad">
+            <End Role="Ciudad" EntitySet="Ciudad" />
+            <End Role="Contrato" EntitySet="Contrato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contrato_Cliente" Association="Self.FK_Contrato_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Contrato" EntitySet="Contrato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contrato_TipoGenerador" Association="Self.FK_Contrato_TipoGenerador">
+            <End Role="TipoGenerador" EntitySet="TipoGenerador" />
+            <End Role="Contrato" EntitySet="Contrato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mantenimiento_Contrato" Association="Self.FK_Mantenimiento_Contrato">
+            <End Role="Contrato" EntitySet="Contrato" />
+            <End Role="Mantenimiento" EntitySet="Mantenimiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mantenimiento_Personal" Association="Self.FK_Mantenimiento_Personal">
+            <End Role="Personal" EntitySet="Personal" />
+            <End Role="Mantenimiento" EntitySet="Mantenimiento" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ElectroparModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Ciudad">
+          <Key>
+            <PropertyRef Name="CodCiudad" />
+          </Key>
+          <Property Name="CodCiudad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Contrato" Relationship="Self.FK_Contrato_Ciudad" FromRole="Ciudad" ToRole="Contrato" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="CodCliente" />
+          </Key>
+          <Property Name="CodCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NroDocumento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NombreRazonSocial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Contrato" Relationship="Self.FK_Contrato_Cliente" FromRole="Cliente" ToRole="Contrato" />
+        </EntityType>
+        <EntityType Name="Contactos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Correo" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="NroTelefono" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Mensaje" Type="String" MaxLength="1000" FixedLength="true" Unicode="true" />
+          <Property Name="fechaEnvio" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Contrato">
+          <Key>
+            <PropertyRef Name="CodContrato" />
+          </Key>
+          <Property Name="CodContrato" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NroContrato" Type="Int32" Nullable="false" />
+          <Property Name="FechaFirma" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CodCliente" Type="Int32" Nullable="false" />
+          <Property Name="CodTipoGenerador" Type="Int32" Nullable="false" />
+          <Property Name="NroSerieEquipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodCiudadUbicacion" Type="Int32" Nullable="false" />
+          <Property Name="FechaFinContrato" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaUltimoMatenimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Ciudad" Relationship="Self.FK_Contrato_Ciudad" FromRole="Contrato" ToRole="Ciudad" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Contrato_Cliente" FromRole="Contrato" ToRole="Cliente" />
+          <NavigationProperty Name="TipoGenerador" Relationship="Self.FK_Contrato_TipoGenerador" FromRole="Contrato" ToRole="TipoGenerador" />
+          <NavigationProperty Name="Mantenimiento" Relationship="Self.FK_Mantenimiento_Contrato" FromRole="Contrato" ToRole="Mantenimiento" />
+        </EntityType>
+        <EntityType Name="Mantenimiento">
+          <Key>
+            <PropertyRef Name="CodMatenimiento" />
+          </Key>
+          <Property Name="CodMatenimiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaRealizacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CodContrato" Type="Int32" Nullable="false" />
+          <Property Name="CodEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="DetalleTrabajo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Contrato" Relationship="Self.FK_Mantenimiento_Contrato" FromRole="Mantenimiento" ToRole="Contrato" />
+          <NavigationProperty Name="Personal" Relationship="Self.FK_Mantenimiento_Personal" FromRole="Mantenimiento" ToRole="Personal" />
+        </EntityType>
+        <EntityType Name="Personal">
+          <Key>
+            <PropertyRef Name="CodPersonal" />
+          </Key>
+          <Property Name="CodPersonal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NroDocumento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NombreApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Mantenimiento" Relationship="Self.FK_Mantenimiento_Personal" FromRole="Personal" ToRole="Mantenimiento" />
+        </EntityType>
+        <EntityType Name="TipoGenerador">
+          <Key>
+            <PropertyRef Name="CodTipoGenerador" />
+          </Key>
+          <Property Name="CodTipoGenerador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Contrato" Relationship="Self.FK_Contrato_TipoGenerador" FromRole="TipoGenerador" ToRole="Contrato" />
+        </EntityType>
+        <Association Name="FK_Contrato_Ciudad">
+          <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="1" />
+          <End Role="Contrato" Type="Self.Contrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudad">
+              <PropertyRef Name="CodCiudad" />
+            </Principal>
+            <Dependent Role="Contrato">
+              <PropertyRef Name="CodCiudadUbicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contrato_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Contrato" Type="Self.Contrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="CodCliente" />
+            </Principal>
+            <Dependent Role="Contrato">
+              <PropertyRef Name="CodCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contrato_TipoGenerador">
+          <End Role="TipoGenerador" Type="Self.TipoGenerador" Multiplicity="1" />
+          <End Role="Contrato" Type="Self.Contrato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoGenerador">
+              <PropertyRef Name="CodTipoGenerador" />
+            </Principal>
+            <Dependent Role="Contrato">
+              <PropertyRef Name="CodTipoGenerador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mantenimiento_Contrato">
+          <End Role="Contrato" Type="Self.Contrato" Multiplicity="1" />
+          <End Role="Mantenimiento" Type="Self.Mantenimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contrato">
+              <PropertyRef Name="CodContrato" />
+            </Principal>
+            <Dependent Role="Mantenimiento">
+              <PropertyRef Name="CodContrato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mantenimiento_Personal">
+          <End Role="Personal" Type="Self.Personal" Multiplicity="1" />
+          <End Role="Mantenimiento" Type="Self.Mantenimiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal">
+              <PropertyRef Name="CodPersonal" />
+            </Principal>
+            <Dependent Role="Mantenimiento">
+              <PropertyRef Name="CodEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ElectroparEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ciudad" EntityType="Self.Ciudad" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="Contactos" EntityType="Self.Contactos" />
+          <EntitySet Name="Contrato" EntityType="Self.Contrato" />
+          <EntitySet Name="Mantenimiento" EntityType="Self.Mantenimiento" />
+          <EntitySet Name="Personal" EntityType="Self.Personal" />
+          <EntitySet Name="TipoGenerador" EntityType="Self.TipoGenerador" />
+          <AssociationSet Name="FK_Contrato_Ciudad" Association="Self.FK_Contrato_Ciudad">
+            <End Role="Ciudad" EntitySet="Ciudad" />
+            <End Role="Contrato" EntitySet="Contrato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contrato_Cliente" Association="Self.FK_Contrato_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Contrato" EntitySet="Contrato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contrato_TipoGenerador" Association="Self.FK_Contrato_TipoGenerador">
+            <End Role="TipoGenerador" EntitySet="TipoGenerador" />
+            <End Role="Contrato" EntitySet="Contrato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mantenimiento_Contrato" Association="Self.FK_Mantenimiento_Contrato">
+            <End Role="Contrato" EntitySet="Contrato" />
+            <End Role="Mantenimiento" EntitySet="Mantenimiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mantenimiento_Personal" Association="Self.FK_Mantenimiento_Personal">
+            <End Role="Personal" EntitySet="Personal" />
+            <End Role="Mantenimiento" EntitySet="Mantenimiento" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ElectroparModelStoreContainer" CdmEntityContainer="ElectroparEntities">
+          <EntitySetMapping Name="Ciudad">
+            <EntityTypeMapping TypeName="ElectroparModel.Ciudad">
+              <MappingFragment StoreEntitySet="Ciudad">
+                <ScalarProperty Name="CodCiudad" ColumnName="CodCiudad" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="ElectroparModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="CodCliente" ColumnName="CodCliente" />
+                <ScalarProperty Name="NroDocumento" ColumnName="NroDocumento" />
+                <ScalarProperty Name="NombreRazonSocial" ColumnName="NombreRazonSocial" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contactos">
+            <EntityTypeMapping TypeName="ElectroparModel.Contactos">
+              <MappingFragment StoreEntitySet="Contactos">
+                <ScalarProperty Name="fechaEnvio" ColumnName="fechaEnvio" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="NroTelefono" ColumnName="NroTelefono" />
+                <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contrato">
+            <EntityTypeMapping TypeName="ElectroparModel.Contrato">
+              <MappingFragment StoreEntitySet="Contrato">
+                <ScalarProperty Name="CodContrato" ColumnName="CodContrato" />
+                <ScalarProperty Name="NroContrato" ColumnName="NroContrato" />
+                <ScalarProperty Name="FechaFirma" ColumnName="FechaFirma" />
+                <ScalarProperty Name="CodCliente" ColumnName="CodCliente" />
+                <ScalarProperty Name="CodTipoGenerador" ColumnName="CodTipoGenerador" />
+                <ScalarProperty Name="NroSerieEquipo" ColumnName="NroSerieEquipo" />
+                <ScalarProperty Name="CodCiudadUbicacion" ColumnName="CodCiudadUbicacion" />
+                <ScalarProperty Name="FechaFinContrato" ColumnName="FechaFinContrato" />
+                <ScalarProperty Name="FechaUltimoMatenimiento" ColumnName="FechaUltimoMatenimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mantenimiento">
+            <EntityTypeMapping TypeName="ElectroparModel.Mantenimiento">
+              <MappingFragment StoreEntitySet="Mantenimiento">
+                <ScalarProperty Name="CodMatenimiento" ColumnName="CodMatenimiento" />
+                <ScalarProperty Name="FechaRealizacion" ColumnName="FechaRealizacion" />
+                <ScalarProperty Name="CodContrato" ColumnName="CodContrato" />
+                <ScalarProperty Name="CodEmpleado" ColumnName="CodEmpleado" />
+                <ScalarProperty Name="DetalleTrabajo" ColumnName="DetalleTrabajo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personal">
+            <EntityTypeMapping TypeName="ElectroparModel.Personal">
+              <MappingFragment StoreEntitySet="Personal">
+                <ScalarProperty Name="CodPersonal" ColumnName="CodPersonal" />
+                <ScalarProperty Name="NroDocumento" ColumnName="NroDocumento" />
+                <ScalarProperty Name="NombreApellido" ColumnName="NombreApellido" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoGenerador">
+            <EntityTypeMapping TypeName="ElectroparModel.TipoGenerador">
+              <MappingFragment StoreEntitySet="TipoGenerador">
+                <ScalarProperty Name="CodTipoGenerador" ColumnName="CodTipoGenerador" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

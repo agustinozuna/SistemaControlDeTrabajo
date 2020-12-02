@@ -1,0 +1,55 @@
+﻿@model IEnumerable<SistemaControlDeTrabajo.Models.Cliente>
+
+
+    <div class="container body-content" style="margin-top: 125">
+        <h2 style="text-align:center">Clientes</h2>
+        <p>
+            @Html.ActionLink("Crear nuevo cliente", "Crear")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NroDocumento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NombreRazonSocial)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Telefono)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>Acciones</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NroDocumento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NombreRazonSocial)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telefono)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Editar", new { id = item.CodCliente }) |
+                        @Html.ActionLink("Detalle", "Detalle", new { id = item.CodCliente }) |
+                        @Html.ActionLink("Eliminar", "Eliminar", new { id = item.CodCliente })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+
+     
+
+
