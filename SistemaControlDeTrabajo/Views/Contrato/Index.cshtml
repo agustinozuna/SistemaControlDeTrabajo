@@ -26,13 +26,13 @@
                 @Html.DisplayNameFor(model => model.FechaUltimoMatenimiento)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Ciudad.Nombre)
+               <!--@Html.DisplayNameFor(model => model.Ciudad.Nombre)--> Ciudad
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Cliente.NroDocumento)
+                <!--@Html.DisplayNameFor(model => model.Cliente.NroDocumento)--> Cliente 
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TipoGenerador.Descripcion)
+               <!--@Html.DisplayNameFor(model => model.TipoGenerador.Descripcion)--> Tipo Generador
             </th>
         </tr>
 
@@ -58,7 +58,7 @@
                     @Html.DisplayFor(modelItem => item.Ciudad.Nombre)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Cliente.NroDocumento)
+                    @Html.DisplayFor(modelItem => item.Cliente.NombreRazonSocial)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TipoGenerador.Descripcion)
