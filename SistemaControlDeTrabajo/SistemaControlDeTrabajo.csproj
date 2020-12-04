@@ -241,6 +241,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Plantilla\assets\img\avataaars.svg" />
     <Content Include="Content\Plantilla\assets\img\favicon.ico" />
+    <Content Include="Content\Plantilla\assets\img\logoLandingPag.jpg" />
     <Content Include="Content\Plantilla\assets\img\portfolio\agustinozuna.png" />
     <Content Include="Content\Plantilla\assets\img\portfolio\cabin.png" />
     <Content Include="Content\Plantilla\assets\img\portfolio\cake.png" />
