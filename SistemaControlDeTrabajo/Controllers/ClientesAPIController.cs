@@ -14,11 +14,13 @@ namespace SistemaControlDeTrabajo.Controllers
 {
     public class ClientesAPIController : ApiController
     {
+
         private ElectroparEntities db = new ElectroparEntities();
 
         // GET: api/ClientesAPI
         public IQueryable<Cliente> GetCliente()
         {
+            db.Configuration.ProxyCreationEnabled = false;
             return db.Cliente;
         }
 
@@ -26,6 +28,8 @@ namespace SistemaControlDeTrabajo.Controllers
         [ResponseType(typeof(Cliente))]
         public IHttpActionResult GetCliente(int id)
         {
+            db.Configuration.ProxyCreationEnabled = false;
+
             Cliente cliente = db.Cliente.Find(id);
             if (cliente == null)
             {
