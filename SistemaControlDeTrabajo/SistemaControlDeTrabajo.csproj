@@ -241,10 +241,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Plantilla\assets\img\avataaars.svg" />
     <Content Include="Content\Plantilla\assets\img\favicon.ico" />
+    <Content Include="Content\Plantilla\assets\img\portfolio\agustinozuna.png" />
     <Content Include="Content\Plantilla\assets\img\portfolio\cabin.png" />
     <Content Include="Content\Plantilla\assets\img\portfolio\cake.png" />
     <Content Include="Content\Plantilla\assets\img\portfolio\circus.png" />
     <Content Include="Content\Plantilla\assets\img\portfolio\game.png" />
+    <Content Include="Content\Plantilla\assets\img\portfolio\juancristaldo.PNG" />
     <Content Include="Content\Plantilla\assets\img\portfolio\safe.png" />
     <Content Include="Content\Plantilla\assets\img\portfolio\submarine.png" />
     <Content Include="Content\Plantilla\assets\mail\contact_me.js" />
@@ -275,6 +277,9 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\SistemaControlDeTrabajo - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\SistemaControlDeTrabajo20201203093356 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\SistemaControlDeTrabajo20201203100521 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
